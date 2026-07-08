@@ -23,7 +23,7 @@ Al decir "empiezo" (skill `/empiezo`), tras el commit de presencia se ejecuta
 3. La publica en `data/<repo>.json` de este repo, solo si cambió algo.
 
 El navegador fusiona los slices y **calcula la presencia al pintar**
-(`activo = último push hace menos de 2 h`), refrescando cada minuto. Por eso el
+(`activo = último push hace menos de 30 min`), refrescando cada minuto. Por eso el
 `active` no se guarda en el JSON: un archivo generado hace 5 horas seguiría
 diciendo "activo" y sería mentira. Y por eso tampoco hace falta ningún cron.
 

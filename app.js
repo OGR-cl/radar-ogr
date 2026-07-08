@@ -1,7 +1,7 @@
 // El dashboard fusiona un slice por repo y calcula la presencia AQUÍ, no en el
 // generador: así "activo" caduca solo aunque el JSON lleve horas sin regenerarse.
 const SLICES = ["data/proyectos-ogr.json", "data/repositorio-ogr.json"];
-const ACTIVE_WINDOW_MIN = 120;
+const ACTIVE_WINDOW_MIN = 30;
 const REFRESH_MS = 60_000;
 
 const TASK_LABELS = {

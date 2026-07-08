@@ -1,6 +1,6 @@
 {
   "repo": "Repositorio-OGR",
-  "generated_at": "2026-07-08T18:51:39.405033+00:00",
+  "generated_at": "2026-07-08T19:50:54.684437+00:00",
   "projects": [
     {
       "folder": "00.- Herramientas",
@@ -39,9 +39,9 @@
       "folder": "03.- Pagina web oficial OGR",
       "name": "03.- Pagina web oficial OGR",
       "last_commit": {
-        "author": "Jose Avello",
-        "date": "2026-07-08T11:32:46-04:00",
-        "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
+        "author": "José Avello",
+        "date": "2026-07-08T15:49:22-04:00",
+        "hash": "7e8e050955d6f86cc6a756bb9e1d41382c85c084"
       },
       "tasks": null,
       "has_tareas_md": false
@@ -163,28 +163,6 @@
         "author": "Jose Avello",
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
-      },
-      "tasks": null,
-      "has_tareas_md": false
-    },
-    {
-      "folder": "7.- Agente tienda Jumpseller",
-      "name": "7.- Agente tienda Jumpseller",
-      "last_commit": {
-        "author": "Jose Avello",
-        "date": "2026-07-01T17:03:21-04:00",
-        "hash": "b4ef2079fb13ae3949aefdcedd688a9bba29d93d"
-      },
-      "tasks": null,
-      "has_tareas_md": false
-    },
-    {
-      "folder": "8.- Aplicacion web para crear landing o paginas web",
-      "name": "8.- Aplicacion web para crear landing o paginas web",
-      "last_commit": {
-        "author": "Jose Avello",
-        "date": "2026-07-01T17:03:21-04:00",
-        "hash": "b4ef2079fb13ae3949aefdcedd688a9bba29d93d"
       },
       "tasks": null,
       "has_tareas_md": false

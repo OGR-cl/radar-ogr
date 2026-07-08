@@ -1,0 +1,94 @@
+{
+  "repo": "proyectos-ogr",
+  "generated_at": "2026-07-08T18:51:39.337397+00:00",
+  "projects": [
+    {
+      "folder": "01_Pipedrive_FusionDuplicados",
+      "name": "01_Pipedrive_FusionDuplicados",
+      "last_commit": {
+        "author": "Daniel Díaz",
+        "date": "2026-07-02T17:13:03-04:00",
+        "hash": "ff74a0d5d6ad07ffcf6277f4008bc30d0fed5e05"
+      },
+      "tasks": null,
+      "has_tareas_md": false
+    },
+    {
+      "folder": "02_Mercado_Publico_Tracker",
+      "name": "02_Mercado_Publico_Tracker",
+      "last_commit": {
+        "author": "Daniel Díaz",
+        "date": "2026-07-02T17:13:03-04:00",
+        "hash": "ff74a0d5d6ad07ffcf6277f4008bc30d0fed5e05"
+      },
+      "tasks": null,
+      "has_tareas_md": false
+    },
+    {
+      "folder": "03_Subcripcion_Cancelada",
+      "name": "03_Subcripcion_Cancelada",
+      "last_commit": {
+        "author": "Daniel Díaz",
+        "date": "2026-07-02T17:13:03-04:00",
+        "hash": "ff74a0d5d6ad07ffcf6277f4008bc30d0fed5e05"
+      },
+      "tasks": null,
+      "has_tareas_md": false
+    },
+    {
+      "folder": "04_Colegios_con_OGR",
+      "name": "04_Colegios_con_OGR",
+      "last_commit": {
+        "author": "Daniel Díaz",
+        "date": "2026-07-02T17:13:03-04:00",
+        "hash": "ff74a0d5d6ad07ffcf6277f4008bc30d0fed5e05"
+      },
+      "tasks": null,
+      "has_tareas_md": false
+    },
+    {
+      "folder": "05_Prioridad_derivacion",
+      "name": "05_Prioridad_derivacion",
+      "last_commit": {
+        "author": "Daniel Díaz",
+        "date": "2026-07-02T17:13:03-04:00",
+        "hash": "ff74a0d5d6ad07ffcf6277f4008bc30d0fed5e05"
+      },
+      "tasks": null,
+      "has_tareas_md": false
+    },
+    {
+      "folder": "07_Encuestas",
+      "name": "07_Encuestas",
+      "last_commit": {
+        "author": "Daniel Díaz",
+        "date": "2026-07-07T14:33:07-04:00",
+        "hash": "b61358983ee3dba2fca3078da3d396a900a49740"
+      },
+      "tasks": null,
+      "has_tareas_md": false
+    },
+    {
+      "folder": "08_CRM_OGR",
+      "name": "08_CRM_OGR",
+      "last_commit": {
+        "author": "Daniel Díaz",
+        "date": "2026-07-02T17:26:58-04:00",
+        "hash": "3b1cbbe8e414611ed01a53dc10425140728b93f3"
+      },
+      "tasks": null,
+      "has_tareas_md": false
+    },
+    {
+      "folder": "whatsapp-bot-nuria",
+      "name": "whatsapp-bot-nuria",
+      "last_commit": {
+        "author": "profesordanieldiaz",
+        "date": "2026-06-02T14:50:11-04:00",
+        "hash": "c28e425fc98a4b0e7f12d5349a804ec7206e42c2"
+      },
+      "tasks": null,
+      "has_tareas_md": false
+    }
+  ]
+}

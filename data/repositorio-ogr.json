@@ -1,121 +1,8 @@
 {
-  "generated_at": "2026-07-08T18:05:13.524156+00:00",
-  "active_window_hours": 2,
+  "repo": "Repositorio-OGR",
+  "generated_at": "2026-07-08T18:51:39.405033+00:00",
   "projects": [
     {
-      "repo": "proyectos-ogr",
-      "folder": "01_Pipedrive_FusionDuplicados",
-      "name": "01_Pipedrive_FusionDuplicados",
-      "last_commit": {
-        "author": "Daniel Díaz",
-        "date": "2026-07-02T17:13:03-04:00",
-        "hash": "ff74a0d5d6ad07ffcf6277f4008bc30d0fed5e05"
-      },
-      "active": false,
-      "minutes_since_last_push": 8452,
-      "tasks": null,
-      "has_tareas_md": false
-    },
-    {
-      "repo": "proyectos-ogr",
-      "folder": "02_Mercado_Publico_Tracker",
-      "name": "02_Mercado_Publico_Tracker",
-      "last_commit": {
-        "author": "Daniel Díaz",
-        "date": "2026-07-02T17:13:03-04:00",
-        "hash": "ff74a0d5d6ad07ffcf6277f4008bc30d0fed5e05"
-      },
-      "active": false,
-      "minutes_since_last_push": 8452,
-      "tasks": null,
-      "has_tareas_md": false
-    },
-    {
-      "repo": "proyectos-ogr",
-      "folder": "03_Subcripcion_Cancelada",
-      "name": "03_Subcripcion_Cancelada",
-      "last_commit": {
-        "author": "Daniel Díaz",
-        "date": "2026-07-02T17:13:03-04:00",
-        "hash": "ff74a0d5d6ad07ffcf6277f4008bc30d0fed5e05"
-      },
-      "active": false,
-      "minutes_since_last_push": 8452,
-      "tasks": null,
-      "has_tareas_md": false
-    },
-    {
-      "repo": "proyectos-ogr",
-      "folder": "04_Colegios_con_OGR",
-      "name": "04_Colegios_con_OGR",
-      "last_commit": {
-        "author": "Daniel Díaz",
-        "date": "2026-07-02T17:13:03-04:00",
-        "hash": "ff74a0d5d6ad07ffcf6277f4008bc30d0fed5e05"
-      },
-      "active": false,
-      "minutes_since_last_push": 8452,
-      "tasks": null,
-      "has_tareas_md": false
-    },
-    {
-      "repo": "proyectos-ogr",
-      "folder": "05_Prioridad_derivacion",
-      "name": "05_Prioridad_derivacion",
-      "last_commit": {
-        "author": "Daniel Díaz",
-        "date": "2026-07-02T17:13:03-04:00",
-        "hash": "ff74a0d5d6ad07ffcf6277f4008bc30d0fed5e05"
-      },
-      "active": false,
-      "minutes_since_last_push": 8452,
-      "tasks": null,
-      "has_tareas_md": false
-    },
-    {
-      "repo": "proyectos-ogr",
-      "folder": "07_Encuestas",
-      "name": "07_Encuestas",
-      "last_commit": {
-        "author": "Daniel Díaz",
-        "date": "2026-07-07T14:33:07-04:00",
-        "hash": "b61358983ee3dba2fca3078da3d396a900a49740"
-      },
-      "active": false,
-      "minutes_since_last_push": 1412,
-      "tasks": null,
-      "has_tareas_md": false
-    },
-    {
-      "repo": "proyectos-ogr",
-      "folder": "08_CRM_OGR",
-      "name": "08_CRM_OGR",
-      "last_commit": {
-        "author": "Daniel Díaz",
-        "date": "2026-07-02T17:26:58-04:00",
-        "hash": "3b1cbbe8e414611ed01a53dc10425140728b93f3"
-      },
-      "active": false,
-      "minutes_since_last_push": 8438,
-      "tasks": null,
-      "has_tareas_md": false
-    },
-    {
-      "repo": "proyectos-ogr",
-      "folder": "whatsapp-bot-nuria",
-      "name": "whatsapp-bot-nuria",
-      "last_commit": {
-        "author": "profesordanieldiaz",
-        "date": "2026-06-02T14:50:11-04:00",
-        "hash": "c28e425fc98a4b0e7f12d5349a804ec7206e42c2"
-      },
-      "active": false,
-      "minutes_since_last_push": 51795,
-      "tasks": null,
-      "has_tareas_md": false
-    },
-    {
-      "repo": "Repositorio-OGR",
       "folder": "00.- Herramientas",
       "name": "00.- Herramientas",
       "last_commit": {
@@ -123,13 +10,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "01.- cotizador",
       "name": "01.- cotizador",
       "last_commit": {
@@ -137,13 +21,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "02.- Landing PN Premium",
       "name": "02.- Landing PN Premium",
       "last_commit": {
@@ -151,13 +32,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "03.- Pagina web oficial OGR",
       "name": "03.- Pagina web oficial OGR",
       "last_commit": {
@@ -165,13 +43,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "04.- Servidor n8n flujos",
       "name": "04.- Servidor n8n flujos",
       "last_commit": {
@@ -179,13 +54,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "05.- Flujos Zapier",
       "name": "05.- Flujos Zapier",
       "last_commit": {
@@ -193,13 +65,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "06.- Analisis de Ceinfes",
       "name": "06.- Analisis de Ceinfes",
       "last_commit": {
@@ -207,13 +76,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "07.- Agente tienda Jumpseller",
       "name": "07.- Agente tienda Jumpseller",
       "last_commit": {
@@ -221,13 +87,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "08.- Aplicacion web para crear landing o paginas web",
       "name": "08.- Aplicacion web para crear landing o paginas web",
       "last_commit": {
@@ -235,13 +98,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "09.- Agente AI N8N",
       "name": "09.- Agente AI N8N",
       "last_commit": {
@@ -249,13 +109,10 @@
         "date": "2026-07-08T13:56:18-04:00",
         "hash": "6a06c43bb22e3c730f145cb9a8c5101c36f7145b"
       },
-      "active": true,
-      "minutes_since_last_push": 9,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "10.- Agente AI pipedrive",
       "name": "10.- Agente AI pipedrive",
       "last_commit": {
@@ -263,13 +120,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "11.- Propuesta landing manuales digitales",
       "name": "11.- Propuesta landing manuales digitales",
       "last_commit": {
@@ -277,13 +131,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "12.- Creacion de CRM",
       "name": "12.- Creacion de CRM",
       "last_commit": {
@@ -291,13 +142,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "13.- (Sebastián) Diagramas de flujos automáticos de OGR",
       "name": "13.- (Sebastián) Diagramas de flujos automáticos de OGR",
       "last_commit": {
@@ -305,13 +153,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "14.- Plan de mejora de proyectos",
       "name": "14.- Plan de mejora de proyectos",
       "last_commit": {
@@ -319,13 +164,10 @@
         "date": "2026-07-08T11:32:46-04:00",
         "hash": "0f82df4bce7df7f3288dfa0f53eb00ca314f0d17"
       },
-      "active": false,
-      "minutes_since_last_push": 152,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "7.- Agente tienda Jumpseller",
       "name": "7.- Agente tienda Jumpseller",
       "last_commit": {
@@ -333,13 +175,10 @@
         "date": "2026-07-01T17:03:21-04:00",
         "hash": "b4ef2079fb13ae3949aefdcedd688a9bba29d93d"
       },
-      "active": false,
-      "minutes_since_last_push": 9902,
       "tasks": null,
       "has_tareas_md": false
     },
     {
-      "repo": "Repositorio-OGR",
       "folder": "8.- Aplicacion web para crear landing o paginas web",
       "name": "8.- Aplicacion web para crear landing o paginas web",
       "last_commit": {
@@ -347,8 +186,6 @@
         "date": "2026-07-01T17:03:21-04:00",
         "hash": "b4ef2079fb13ae3949aefdcedd688a9bba29d93d"
       },
-      "active": false,
-      "minutes_since_last_push": 9902,
       "tasks": null,
       "has_tareas_md": false
     }

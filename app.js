@@ -1,3 +1,9 @@
+// El dashboard fusiona un slice por repo y calcula la presencia AQUÍ, no en el
+// generador: así "activo" caduca solo aunque el JSON lleve horas sin regenerarse.
+const SLICES = ["data/proyectos-ogr.json", "data/repositorio-ogr.json"];
+const ACTIVE_WINDOW_MIN = 120;
+const REFRESH_MS = 60_000;
+
 const TASK_LABELS = {
   pendiente: "pendiente",
   en_curso: "en curso",
@@ -12,6 +18,13 @@ function fmtMinutes(min) {
   if (hours < 24) return `hace ${hours} h`;
   const days = Math.floor(hours / 24);
   return `hace ${days} d`;
+}
+
+function minutesSince(isoDate) {
+  if (!isoDate) return null;
+  const then = new Date(isoDate).getTime();
+  if (Number.isNaN(then)) return null;
+  return Math.round((Date.now() - then) / 60_000);
 }
 
 function renderTasks(tasks) {
@@ -44,23 +57,55 @@ function renderCard(p) {
   `;
 }
 
+async function fetchSlice(path) {
+  const res = await fetch(path, { cache: "no-store" });
+  if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
+  return res.json();
+}
+
 async function main() {
-  const res = await fetch("data.json", { cache: "no-store" });
-  const data = await res.json();
+  // Un slice caído no debe tumbar el dashboard entero: se pinta lo que haya.
+  const settled = await Promise.allSettled(SLICES.map(fetchSlice));
+  const slices = settled.filter((r) => r.status === "fulfilled").map((r) => r.value);
+  settled
+    .filter((r) => r.status === "rejected")
+    .forEach((r) => console.error("slice no disponible:", r.reason));
 
-  const updated = new Date(data.generated_at);
+  if (slices.length === 0) throw new Error("ningún slice disponible");
+
+  const projects = slices.flatMap((slice) =>
+    slice.projects.map((p) => {
+      const mins = minutesSince(p.last_commit?.date);
+      return {
+        ...p,
+        repo: slice.repo,
+        minutes_since_last_push: mins,
+        active: mins != null && mins <= ACTIVE_WINDOW_MIN,
+      };
+    })
+  );
+
+  const newest = slices
+    .map((s) => new Date(s.generated_at))
+    .sort((a, b) => b - a)[0];
   document.getElementById("updated").textContent =
-    `Actualizado: ${updated.toLocaleString("es-CL")}`;
+    `Actualizado: ${newest.toLocaleString("es-CL")}`;
 
-  const grid = document.getElementById("grid");
-  const projects = [...data.projects].sort((a, b) => {
+  projects.sort((a, b) => {
     if (a.active !== b.active) return a.active ? -1 : 1;
     return (a.minutes_since_last_push ?? Infinity) - (b.minutes_since_last_push ?? Infinity);
   });
-  grid.innerHTML = projects.map(renderCard).join("");
+
+  document.getElementById("grid").innerHTML = projects.map(renderCard).join("");
 }
 
-main().catch((err) => {
-  document.getElementById("grid").textContent = "No se pudo cargar data.json.";
-  console.error(err);
-});
+function run() {
+  main().catch((err) => {
+    document.getElementById("grid").textContent = "No se pudo cargar el radar.";
+    console.error(err);
+  });
+}
+
+run();
+// Repinta sin recargar: la presencia caduca sola aunque nadie pushee.
+setInterval(run, REFRESH_MS);

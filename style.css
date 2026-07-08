@@ -102,6 +102,33 @@ h1 {
   margin-top: 0.15rem;
 }
 
+.presencia-accion {
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-presencia {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+}
+
+.btn-presencia:hover { filter: brightness(1.08); }
+
+.presencia-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 .grid {
   max-width: 1100px;
   margin: 0 auto;

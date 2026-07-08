@@ -1,0 +1,58 @@
+name: Marcar presencia
+run-name: "🔦 Presencia: ${{ inputs.quien }} → ${{ inputs.proyecto }}"
+
+# El "interruptor" del Radar OGR. Cada uno entra a Actions → Run workflow,
+# elige su nombre y su proyecto, y clic: eso enciende su luz en el dashboard.
+# No necesita ningún token: el workflow vive en su propio repo y escribe con
+# el GITHUB_TOKEN automático. Solo miembros de OGR-cl pueden lanzarlo.
+
+on:
+  workflow_dispatch:
+    inputs:
+      quien:
+        description: "¿Quién eres?"
+        type: choice
+        options:
+          - Daniel
+          - José
+        required: true
+      proyecto:
+        description: 'Proyecto en el que trabajas (escribe "libre" para apagar tu luz)'
+        type: string
+        required: true
+        default: libre
+
+permissions:
+  contents: write
+
+# Si los dos pulsan a la vez, uno espera al otro: así el segundo push no choca.
+concurrency:
+  group: presencia
+  cancel-in-progress: false
+
+jobs:
+  marcar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Actualizar presencia.json
+        env:
+          QUIEN: ${{ inputs.quien }}
+          PROYECTO: ${{ inputs.proyecto }}
+        run: python3 .github/scripts/set_presencia.py
+
+      - name: Commit y push
+        env:
+          QUIEN: ${{ inputs.quien }}
+          PROYECTO: ${{ inputs.proyecto }}
+        run: |
+          git config user.name "Radar OGR"
+          git config user.email "radar@ogr.cl"
+          git add presencia.json
+          if git diff --cached --quiet; then
+            echo "sin cambios"
+          else
+            git commit -m "🔦 presencia: $QUIEN → $PROYECTO"
+            git push
+          fi

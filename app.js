@@ -4,6 +4,13 @@ const SLICES = ["data/proyectos-ogr.json", "data/repositorio-ogr.json"];
 const ACTIVE_WINDOW_MIN = 30;
 const REFRESH_MS = 60_000;
 
+// Presencia manual: cada uno enciende su luz con el botón "Marcar presencia"
+// (workflow_dispatch en este repo). El JSON solo guarda proyecto + desde; la
+// luz se pinta aquí. Si alguien olvidó apagarla, tras STALE se avisa en ámbar.
+const PRESENCIA = "presencia.json";
+const PRESENCIA_STALE_MIN = 6 * 60;
+const PERSONAS_ORDEN = ["Daniel", "José"];
+
 const TASK_LABELS = {
   pendiente: "pendiente",
   en_curso: "en curso",
@@ -57,6 +64,46 @@ function renderCard(p) {
   `;
 }
 
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
+  );
+}
+
+function renderPersona(nombre, estado) {
+  const proyecto = estado && estado.proyecto;
+  const mins = minutesSince(estado && estado.desde);
+  const on = Boolean(proyecto);
+  const stale = on && mins != null && mins > PRESENCIA_STALE_MIN;
+  const cls = !on ? "off" : stale ? "stale" : "on";
+  const luz = !on ? "⚪" : stale ? "🟡" : "🟢";
+  const estadoTxt = on
+    ? `en <strong>${escapeHtml(proyecto)}</strong>`
+    : "libre";
+  const desde = on
+    ? `desde ${fmtMinutes(mins)}${stale ? " · ¿sigue activo?" : ""}`
+    : "";
+  return `
+    <div class="persona ${cls}">
+      <span class="luz">${luz}</span>
+      <div class="persona-info">
+        <div class="persona-nombre">${escapeHtml(nombre)}</div>
+        <div class="persona-estado">${estadoTxt}</div>
+        ${desde ? `<div class="persona-desde">${desde}</div>` : ""}
+      </div>
+    </div>
+  `;
+}
+
+async function loadPresencia() {
+  const el = document.getElementById("presencia");
+  if (!el) return;
+  const data = await fetchSlice(PRESENCIA);
+  const personas = data.personas || {};
+  const nombres = [...new Set([...PERSONAS_ORDEN, ...Object.keys(personas)])];
+  el.innerHTML = nombres.map((n) => renderPersona(n, personas[n])).join("");
+}
+
 async function fetchSlice(path) {
   const res = await fetch(path, { cache: "no-store" });
   if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
@@ -104,6 +151,8 @@ function run() {
     document.getElementById("grid").textContent = "No se pudo cargar el radar.";
     console.error(err);
   });
+  // Independiente del grid: si falla la presencia, el radar sigue pintándose.
+  loadPresencia().catch((err) => console.error("presencia no disponible:", err));
 }
 
 run();

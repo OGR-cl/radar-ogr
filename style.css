@@ -57,6 +57,51 @@ h1 {
   color: var(--muted);
 }
 
+.presencia {
+  max-width: 1100px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.persona {
+  flex: 1 1 240px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+}
+
+.persona.on { border-color: var(--active); }
+.persona.stale { border-color: var(--pill-en_curso); }
+
+.persona .luz {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.persona-nombre {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.persona-estado {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.persona.on .persona-estado { color: var(--text); }
+
+.persona-desde {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
 .grid {
   max-width: 1100px;
   margin: 0 auto;

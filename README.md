@@ -10,36 +10,38 @@ repos `OGR-cl/proyectos-ogr` y `OGR-cl/Repositorio-OGR`.
 
 ## Cómo se actualiza
 
-Cada repo de trabajo tiene un workflow (`.github/workflows/radar.yml`) que corre en
-cada push a `main`:
+**Sin tokens y sin GitHub Actions.** La actualización corre en la máquina de quien
+trabaja, con sus credenciales de git normales — Daniel y José ya tienen push a
+`OGR-cl`. Un runner de GitHub habría necesitado un PAT; vosotros no.
 
-1. Hace checkout de **su propio** repo (con el `GITHUB_TOKEN` que GitHub da gratis).
-2. Descarga `generar_data.py` desde este repo (es público, no hace falta auth).
-3. Genera su porción — un "slice" — con el último commit por carpeta y el conteo
+Al decir "empiezo" (skill `/empiezo`), tras el commit de presencia se ejecuta
+`radar_publicar.sh`, que:
+
+1. Detecta en qué repo estás por la URL del `origin`.
+2. Genera tu porción — un "slice" — con el último commit por carpeta y el conteo
    de estados de cada `TAREAS.md`.
-4. Publica el slice en `data/<repo>.json` de este repo, usando el secret
-   `RADAR_OGR_TOKEN`.
+3. La publica en `data/<repo>.json` de este repo, solo si cambió algo.
 
 El navegador fusiona los slices y **calcula la presencia al pintar**
 (`activo = último push hace menos de 2 h`), refrescando cada minuto. Por eso el
 `active` no se guarda en el JSON: un archivo generado hace 5 horas seguiría
-diciendo "activo" y sería mentira.
+diciendo "activo" y sería mentira. Y por eso tampoco hace falta ningún cron.
 
-Cada repo publica solo su propio slice. Así el token compartido necesita permiso de
-**escritura únicamente sobre `radar-ogr`** (repo público) y **no puede leer** el
-código de los repos privados de OGR.
+Cada repo publica solo su propio slice, así que el dashboard se pinta igual aunque
+uno de los dos lleve tiempo sin publicar.
 
-## El secret `RADAR_OGR_TOKEN`
+## Publicar a mano
 
-Fine-grained PAT, configurado como secret en `proyectos-ogr` y `Repositorio-OGR`:
+Desde cualquier punto dentro de `proyectos-ogr` o `Repositorio-OGR`:
 
-- **Resource owner:** `OGR-cl`
-- **Repository access:** solo `OGR-cl/radar-ogr`
-- **Permisos:** `Contents: Read and write` (nada más)
+```bash
+curl -fsSL https://raw.githubusercontent.com/OGR-cl/radar-ogr/main/radar_publicar.sh -o /tmp/radar_publicar.sh
+bash /tmp/radar_publicar.sh
+```
 
-Es lo único que puede hacer: escribir en este dashboard.
+Si nada cambió, no deja commit. Si el otro pushea a la vez, rebasa y reintenta.
 
-## Correr el generador a mano
+## Correr solo el generador
 
 ```bash
 python3 generar_data.py --root /ruta/a/proyectos-ogr --key proyectos-ogr \
@@ -47,7 +49,7 @@ python3 generar_data.py --root /ruta/a/proyectos-ogr --key proyectos-ogr \
   --out data/proyectos-ogr.json
 ```
 
-Necesita el historial completo de git (en CI: `fetch-depth: 0`).
+Necesita el historial completo de git.
 
 ## Convención de tareas
 

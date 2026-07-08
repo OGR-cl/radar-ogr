@@ -32,11 +32,11 @@ uno de los dos lleve tiempo sin publicar.
 
 ## Publicar a mano
 
-Desde cualquier punto dentro de `proyectos-ogr` o `Repositorio-OGR`:
+Clona este repo una vez, y luego, desde cualquier punto dentro de `proyectos-ogr`
+o `Repositorio-OGR`:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/OGR-cl/radar-ogr/main/radar_publicar.sh -o /tmp/radar_publicar.sh
-bash /tmp/radar_publicar.sh
+bash /ruta/a/radar-ogr/radar_publicar.sh
 ```
 
 Si nada cambió, no deja commit. Si el otro pushea a la vez, rebasa y reintenta.

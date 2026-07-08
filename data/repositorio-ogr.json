@@ -1,6 +1,6 @@
 {
   "repo": "Repositorio-OGR",
-  "generated_at": "2026-07-08T19:50:54.684437+00:00",
+  "generated_at": "2026-07-08T20:35:47.086095+00:00",
   "projects": [
     {
       "folder": "00.- Herramientas",
@@ -40,8 +40,8 @@
       "name": "03.- Pagina web oficial OGR",
       "last_commit": {
         "author": "José Avello",
-        "date": "2026-07-08T15:49:22-04:00",
-        "hash": "7e8e050955d6f86cc6a756bb9e1d41382c85c084"
+        "date": "2026-07-08T16:35:26-04:00",
+        "hash": "3d994ca0ebf58812a1f220a549fa5a4c275d18f7"
       },
       "tasks": null,
       "has_tareas_md": false

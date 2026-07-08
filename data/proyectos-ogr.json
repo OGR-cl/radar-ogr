@@ -1,6 +1,6 @@
 {
   "repo": "proyectos-ogr",
-  "generated_at": "2026-07-08T18:51:39.337397+00:00",
+  "generated_at": "2026-07-08T19:38:44.484017+00:00",
   "projects": [
     {
       "folder": "01_Pipedrive_FusionDuplicados",
@@ -62,8 +62,8 @@
       "name": "07_Encuestas",
       "last_commit": {
         "author": "Daniel Díaz",
-        "date": "2026-07-07T14:33:07-04:00",
-        "hash": "b61358983ee3dba2fca3078da3d396a900a49740"
+        "date": "2026-07-08T15:37:58-04:00",
+        "hash": "1e3d6dd96c799f1ad05e74f212be84900c5d18ee"
       },
       "tasks": null,
       "has_tareas_md": false

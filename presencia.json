@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-07-09T14:33:03.420Z",
+  "updated_at": "2026-07-09T14:33:20.245Z",
   "personas": {
     "Daniel": {
       "proyecto": null,
       "desde": null
     },
     "José": {
-      "proyecto": null,
-      "desde": null
+      "proyecto": "09.- Agente AI N8N",
+      "desde": "2026-07-09T14:33:20.245Z"
     }
   }
 }

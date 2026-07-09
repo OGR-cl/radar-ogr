@@ -1,7 +1,13 @@
 {
-  "updated_at": null,
+  "updated_at": "2026-07-09T14:11:47.015Z",
   "personas": {
-    "Daniel": { "proyecto": null, "desde": null },
-    "José": { "proyecto": null, "desde": null }
+    "Daniel": {
+      "proyecto": "01_Pipedrive_FusionDuplicados",
+      "desde": "2026-07-09T14:11:47.011Z"
+    },
+    "José": {
+      "proyecto": null,
+      "desde": null
+    }
   }
 }

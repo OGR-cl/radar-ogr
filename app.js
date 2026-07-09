@@ -373,7 +373,7 @@ function renderPlans(plans) {
 function renderCard(p) {
   const author = p.manualBy || (p.last_commit ? p.last_commit.author : "sin commits");
   const activeClass = p.active ? "active" : "idle";
-  const activeLabel = p.active ? `🟢 ${author}` : "libre";
+  const activeLabel = p.active ? `🟢 ${escapeHtml(author)}` : "libre";
   const plansHtml = renderPlans(p.plans);
   const tasksHtml = renderTasks(p.tasks);
   const emptyHtml = !p.has_tareas_md
@@ -383,8 +383,8 @@ function renderCard(p) {
     <div class="card">
       <div class="card-head">
         <div>
-          <div class="card-name">${p.name}</div>
-          <div class="card-repo">${p.repo}</div>
+          <div class="card-name">${escapeHtml(p.name)}</div>
+          <div class="card-repo">${escapeHtml(p.repo)}</div>
         </div>
         <span class="badge ${activeClass}">${activeLabel}</span>
       </div>

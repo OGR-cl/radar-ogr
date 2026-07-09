@@ -238,7 +238,7 @@ function renderTokenBanner() {
     clearAuth();
     editingName = null;
     renderTokenBanner();
-    loadPresencia();
+    run();
     showToast("Token olvidado en este navegador.");
   };
 }
@@ -287,9 +287,7 @@ function paintPersonas(personas) {
   bindPresenciaEvents(personas);
 }
 
-async function loadPresencia() {
-  const el = document.getElementById("presencia");
-  if (!el) return;
+async function fetchPresenciaData() {
   const data = await fetchSlice(PRESENCIA);
   const personas = { ...(data.personas || {}) };
   // La sobrescritura optimista manda mientras Pages no haya republicado el
@@ -300,7 +298,22 @@ async function loadPresencia() {
     if (yaIgual) delete overridePersonas[n];
     else personas[n] = estado;
   }
-  paintPersonas(personas);
+  return personas;
+}
+
+// A quién le corresponde marcar manualmente cada proyecto activo, para que
+// las tarjetas de abajo reflejen también el interruptor de arriba (no solo
+// push reciente). Se ignora si la marca lleva más de PRESENCIA_STALE_MIN
+// sin apagarse — igual que la luz pasa a 🟡, deja de "encender" la tarjeta.
+function manualPresenceByProject(personas) {
+  const porProyecto = {};
+  for (const [nombre, estado] of Object.entries(personas || {})) {
+    if (!estado || !estado.proyecto) continue;
+    const mins = minutesSince(estado.desde);
+    if (mins != null && mins > PRESENCIA_STALE_MIN) continue;
+    porProyecto[estado.proyecto] = nombre;
+  }
+  return porProyecto;
 }
 
 // --- Modal de conexión ---------------------------------------------------
@@ -329,7 +342,7 @@ function bindModal() {
     setAuth(nombre, token);
     closeModal();
     renderTokenBanner();
-    loadPresencia();
+    run();
     showToast(`Conectado como ${nombre} 🔑`);
   };
 }
@@ -348,7 +361,7 @@ function renderTasks(tasks) {
 }
 
 function renderCard(p) {
-  const author = p.last_commit ? p.last_commit.author : "sin commits";
+  const author = p.manualBy || (p.last_commit ? p.last_commit.author : "sin commits");
   const activeClass = p.active ? "active" : "idle";
   const activeLabel = p.active ? `🟢 ${author}` : "libre";
   return `
@@ -372,7 +385,7 @@ async function fetchSlice(path) {
   return res.json();
 }
 
-async function main() {
+async function main(personas) {
   // Un slice caído no debe tumbar el dashboard entero: se pinta lo que haya.
   const settled = await Promise.allSettled(SLICES.map(fetchSlice));
   const slices = settled.filter((r) => r.status === "fulfilled").map((r) => r.value);
@@ -382,14 +395,21 @@ async function main() {
 
   if (slices.length === 0) throw new Error("ningún slice disponible");
 
+  const manualPorProyecto = manualPresenceByProject(personas);
+
   const projects = slices.flatMap((slice) =>
     slice.projects.map((p) => {
       const mins = minutesSince(p.last_commit?.date);
+      const pushActive = mins != null && mins <= ACTIVE_WINDOW_MIN;
+      const manualBy = manualPorProyecto[p.name];
       return {
         ...p,
         repo: slice.repo,
         minutes_since_last_push: mins,
-        active: mins != null && mins <= ACTIVE_WINDOW_MIN,
+        // Activo por push reciente O por presencia manual: son dos señales,
+        // basta con una para encender la tarjeta.
+        active: pushActive || Boolean(manualBy),
+        manualBy,
       };
     })
   );
@@ -410,13 +430,21 @@ async function main() {
   document.getElementById("grid").innerHTML = projects.map(renderCard).join("");
 }
 
-function run() {
-  main().catch((err) => {
+async function run() {
+  // La presencia se resuelve primero porque el grid la necesita para encender
+  // tarjetas por marca manual, no solo por push. Si falla, el grid sigue
+  // pintándose solo con la señal de push (personas = {}).
+  let personas = {};
+  try {
+    personas = await fetchPresenciaData();
+    paintPersonas(personas);
+  } catch (err) {
+    console.error("presencia no disponible:", err);
+  }
+  main(personas).catch((err) => {
     document.getElementById("grid").textContent = "No se pudo cargar el radar.";
     console.error(err);
   });
-  // Independiente del grid: si falla la presencia, el radar sigue pintándose.
-  loadPresencia().catch((err) => console.error("presencia no disponible:", err));
 }
 
 bindModal();

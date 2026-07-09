@@ -2,7 +2,8 @@
 """Genera la porción de data del Radar OGR correspondiente a UN repo.
 
 Recorre las carpetas de primer nivel del repo indicado, saca el último commit
-de cada una (presencia) y cuenta el estado de las tareas en su TAREAS.md.
+de cada una (presencia) y cuenta el estado de las tareas y de los planes
+pendientes (bloques con "Tipo: Plan") en su TAREAS.md.
 
 Escribe un "slice": {repo, generated_at, projects:[...]}. El dashboard fusiona
 los slices de todos los repos y calcula quién está activo EN EL NAVEGADOR, a
@@ -22,9 +23,10 @@ import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
-TASK_HEADER_RE = re.compile(r"^##\s+(.+)$")
+HEADER_RE = re.compile(r"(?m)^##\s+.*$")
 ESTADO_RE = re.compile(r"^Estado:\s*(⬜|🔄|✅|🧪)")
 ESTADO_MAP = {"⬜": "pendiente", "🔄": "en_curso", "✅": "hecho", "🧪": "qa"}
+TIPO_RE = re.compile(r"^Tipo:\s*(.+)$", re.IGNORECASE)
 EMPIEZO_RE = re.compile(r"empiezo:\s*(.+?)\s*$")
 
 
@@ -75,16 +77,37 @@ def newest_commit(a, b):
 
 
 def parse_tareas_md(tareas_path):
+    """Cuenta tareas normales y planes por separado.
+
+    Un bloque (lo que sigue a un "## título" hasta el próximo) es un "plan"
+    si trae una línea "Tipo: Plan" — José lo usa para dejar la planificación
+    de un proyecto entero, no un paso suelto de un checklist. El resto de
+    bloques con "Estado:" se cuentan como tareas normales, igual que antes.
+    """
     if not tareas_path.exists():
-        return None
-    counts = {"pendiente": 0, "en_curso": 0, "hecho": 0, "qa": 0}
+        return None, None
     text = tareas_path.read_text(encoding="utf-8", errors="ignore")
-    for line in text.splitlines():
-        m = ESTADO_RE.match(line.strip())
-        if m:
-            counts[ESTADO_MAP[m.group(1)]] += 1
-    counts["total"] = sum(counts.values())
-    return counts
+    tasks = {"pendiente": 0, "en_curso": 0, "hecho": 0, "qa": 0}
+    plans = {"pendiente": 0, "en_curso": 0, "hecho": 0}
+    for block in HEADER_RE.split(text)[1:]:
+        estado = None
+        es_plan = False
+        for raw in block.splitlines():
+            line = raw.strip()
+            m = ESTADO_RE.match(line)
+            if m:
+                estado = ESTADO_MAP[m.group(1)]
+                continue
+            m = TIPO_RE.match(line)
+            if m:
+                es_plan = m.group(1).strip().lower() == "plan"
+        if estado is None:
+            continue
+        bucket = plans if es_plan else tasks
+        bucket[estado] = bucket.get(estado, 0) + 1
+    tasks["total"] = sum(v for k, v in tasks.items() if k != "total")
+    plans["total"] = sum(v for k, v in plans.items() if k != "total")
+    return tasks, plans
 
 
 def build_project_entry(repo_path, folder, empiezos):
@@ -92,11 +115,13 @@ def build_project_entry(repo_path, folder, empiezos):
     last = newest_commit(
         last_commit_for_path(repo_path, folder.name), empiezos.get(folder.name)
     )
+    tasks, plans = parse_tareas_md(tareas_path)
     return {
         "folder": folder.name,
         "name": folder.name,
         "last_commit": last,
-        "tasks": parse_tareas_md(tareas_path),
+        "tasks": tasks,
+        "plans": plans,
         "has_tareas_md": tareas_path.exists(),
     }
 

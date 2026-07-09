@@ -6,7 +6,10 @@ ahora mismo, y cómo va el checklist de tareas de cada uno.
 **URL: https://ogr-cl.github.io/radar-ogr/**
 
 No se edita a mano. Todo sale del historial de commits y de los `TAREAS.md` de los
-repos `OGR-cl/proyectos-ogr` y `OGR-cl/Repositorio-OGR`.
+repos `OGR-cl/proyectos-ogr` y `OGR-cl/Repositorio-OGR`. Un bloque de `TAREAS.md`
+con `Tipo: Plan` se muestra aparte como "📋 plan pendiente": es la planificación
+de un proyecto entero que alguien deja para que el otro lo construya, no un paso
+suelto de un checklist. Ver `GUIA_TAREAS.md` en `09_Radar_OGR`.
 
 ## Cómo se actualiza
 

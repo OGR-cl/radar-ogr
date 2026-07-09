@@ -296,6 +296,9 @@ h1 {
 .pill.hecho     { background: var(--pill-hecho); }
 .pill.qa        { background: var(--pill-qa); }
 
+/* Plan de proyecto completo (Tipo: Plan), no una tarea suelta */
+.pill.plan { outline: 2px solid var(--accent); outline-offset: 1px; }
+
 .no-tasks {
   font-size: 0.8rem;
   color: var(--muted);

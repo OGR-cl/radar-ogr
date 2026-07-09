@@ -350,9 +350,7 @@ function bindModal() {
 // --- Proyectos (grid) ----------------------------------------------------
 
 function renderTasks(tasks) {
-  if (!tasks || tasks.total === 0) {
-    return '<p class="no-tasks">sin TAREAS.md</p>';
-  }
+  if (!tasks || tasks.total === 0) return "";
   const pills = Object.entries(TASK_LABELS)
     .filter(([key]) => tasks[key] > 0)
     .map(([key, label]) => `<span class="pill ${key}">${tasks[key]} ${label}</span>`)
@@ -360,10 +358,27 @@ function renderTasks(tasks) {
   return `<div class="tasks">${pills}</div>`;
 }
 
+// Bloques con "Tipo: Plan" en el TAREAS.md: José deja ahí la planificación de
+// un proyecto entero para que Daniel lo construya, no un paso suelto de un
+// checklist. Se pintan aparte (📋) para no confundirlos con tareas normales.
+function renderPlans(plans) {
+  if (!plans || plans.total === 0) return "";
+  const pills = Object.entries(TASK_LABELS)
+    .filter(([key]) => plans[key] > 0)
+    .map(([key, label]) => `<span class="pill plan ${key}">📋 ${plans[key]} plan ${label}</span>`)
+    .join("");
+  return `<div class="tasks plans">${pills}</div>`;
+}
+
 function renderCard(p) {
   const author = p.manualBy || (p.last_commit ? p.last_commit.author : "sin commits");
   const activeClass = p.active ? "active" : "idle";
   const activeLabel = p.active ? `🟢 ${author}` : "libre";
+  const plansHtml = renderPlans(p.plans);
+  const tasksHtml = renderTasks(p.tasks);
+  const emptyHtml = !p.has_tareas_md
+    ? '<p class="no-tasks">sin TAREAS.md</p>'
+    : (!plansHtml && !tasksHtml ? '<p class="no-tasks">TAREAS.md sin pendientes</p>' : "");
   return `
     <div class="card">
       <div class="card-head">
@@ -374,7 +389,7 @@ function renderCard(p) {
         <span class="badge ${activeClass}">${activeLabel}</span>
       </div>
       <div class="last-push">último push: ${fmtMinutes(p.minutes_since_last_push)}</div>
-      ${renderTasks(p.tasks)}
+      ${plansHtml}${tasksHtml}${emptyHtml}
     </div>
   `;
 }

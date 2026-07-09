@@ -15,12 +15,7 @@
 
 <section id="presencia" class="presencia" aria-label="Quién está trabajando ahora"></section>
 
-<p class="presencia-accion">
-  <a class="btn-presencia"
-     href="https://github.com/OGR-cl/radar-ogr/actions/workflows/presencia.yml"
-     target="_blank" rel="noopener">🔦 Marcar / cambiar mi presencia →</a>
-  <span class="presencia-hint">Elige tu nombre y proyecto, y pulsa «Run workflow».</span>
-</p>
+<div id="tokenBanner" class="presencia-accion"></div>
 
 <main id="grid" class="grid"></main>
 
@@ -28,6 +23,32 @@
   <p>Generado automáticamente desde <code>TAREAS.md</code> y el historial de commits de
      <code>proyectos-ogr</code> y <code>Repositorio-OGR</code>. No se edita a mano.</p>
 </footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h2>Conectar tu GitHub</h2>
+    <p>Con esto puedes cambiar tu presencia sin salir de la página. El token vive
+       solo en este navegador — nunca se sube a ningún repo.</p>
+    <div class="modal-steps">
+      1. GitHub → <em>Settings → Developer settings → Fine-grained tokens</em><br>
+      2. Repositorio: <code>OGR-cl/radar-ogr</code> · Permiso: <code>Contents: Read and write</code><br>
+      3. Pega el token abajo.
+    </div>
+    <label for="modalNombre">¿Quién eres?</label>
+    <select id="modalNombre">
+      <option value="Daniel">Daniel</option>
+      <option value="José">José</option>
+    </select>
+    <label for="modalToken">Token (github_pat_…)</label>
+    <input id="modalToken" type="password" placeholder="github_pat_11AB..." autocomplete="off">
+    <div class="modal-btns">
+      <button class="cancel" id="modalCancel">Cancelar</button>
+      <button class="save" id="modalSave">Conectar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script src="app.js"></script>
 </body>

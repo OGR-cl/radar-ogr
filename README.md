@@ -30,29 +30,39 @@ diciendo "activo" y sería mentira. Y por eso tampoco hace falta ningún cron.
 Cada repo publica solo su propio slice, así que el dashboard se pinta igual aunque
 uno de los dos lleve tiempo sin publicar.
 
-## Marcar presencia — el interruptor (botón, sin terminal)
+## Marcar presencia — el interruptor (embebido en la página)
 
 Además de la presencia automática por commits, cada uno tiene un **interruptor
 manual**: una luz con su nombre que enciende a mano, sin depender de hacer push
-ni de correr nada en la terminal.
+ni de salir del dashboard.
 
-Es un botón dentro de GitHub (no hace falta backend ni token):
+El botón **"Cambiar"** vive en la propia tarjeta de tu nombre. La primera vez
+hay que conectar tu GitHub (una vez por navegador):
 
-1. Entra a **[Actions → Marcar presencia](../../actions/workflows/presencia.yml)**.
-2. Botón **Run workflow**: elige tu nombre (Daniel / José) y escribe el proyecto.
-3. Clic. El workflow actualiza `presencia.json` y el dashboard enciende tu luz 🟢
-   con el nombre del proyecto.
+1. Botón **"Conectar mi GitHub"** (arriba de las tarjetas de presencia).
+2. Crea un *fine-grained token* en GitHub → *Settings → Developer settings →
+   Fine-grained tokens*, con acceso solo a **`OGR-cl/radar-ogr`** y permiso
+   **`Contents: Read and write`**.
+3. Pega el token y elige tu nombre. Se guarda solo en ese navegador
+   (`localStorage`) — nunca viaja a ningún repo ni a un servidor.
 
-Para **apagar** la luz, corre el mismo botón con proyecto `libre`. Si olvidas
-apagarla, tras 6 h la luz pasa a 🟡 «¿sigue activo?» como recordatorio.
+Con eso conectado, tu tarjeta muestra "Cambiar": eliges el proyecto (o "marcar
+libre") y guardas — el JS escribe `presencia.json` directo contra la Contents
+API de GitHub con tu token, sin pasar por Actions. Si el otro está publicando
+a la vez, reintenta una vez (mismo espíritu que el rebase de
+`radar_publicar.sh`). Cada uno solo puede cambiar su propia luz (candado 🔒 en
+la del otro). Si olvidas apagarla, tras 6 h la luz pasa a 🟡 «¿sigue activo?».
 
-- **Sin secretos:** el workflow vive en este mismo repo, así que escribe con el
-  `GITHUB_TOKEN` automático. No hay PAT que mantener.
-- **Auth incluida:** solo miembros de `OGR-cl` pueden lanzar workflows.
-- **Coste cero:** repo público → minutos de Actions ilimitados.
+- **Sin backend:** el "servidor" es tu propio navegador con tu propio token.
+- **Sin secreto compartido:** cada quien crea y guarda el suyo, con permiso
+  mínimo (solo este repo, solo lectura/escritura de contenido).
+- Sigue funcionando desde el móvil. El estado vive en `presencia.json`, un
+  commit como cualquier otro.
 
-Funciona desde el móvil (es web). El estado vive en `presencia.json`, un commit
-como cualquier otro.
+El workflow `Actions → Marcar presencia`
+([presencia.yml](.github/workflows/presencia.yml)) se mantiene como respaldo
+manual (por si alguien no quiere crear un token), pero ya no es el camino
+principal.
 
 ## Publicar a mano
 

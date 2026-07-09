@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-07-09T14:32:37.820Z",
+  "updated_at": "2026-07-09T14:32:57.740Z",
   "personas": {
     "Daniel": {
       "proyecto": null,
       "desde": null
     },
     "José": {
-      "proyecto": "02.- Landing PN Premium",
-      "desde": "2026-07-09T14:29:08.066Z"
+      "proyecto": null,
+      "desde": null
     }
   }
 }

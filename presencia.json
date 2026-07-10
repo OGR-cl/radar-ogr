@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-07-09T20:22:01.898Z",
+  "updated_at": "2026-07-10T15:17:57.957Z",
   "personas": {
     "Daniel": {
-      "proyecto": null,
-      "desde": null
+      "proyecto": "08_CRM_OGR",
+      "desde": "2026-07-10T15:17:57.957Z"
     },
     "José": {
       "proyecto": null,
